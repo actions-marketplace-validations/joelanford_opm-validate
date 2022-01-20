@@ -1,0 +1,18 @@
+name: 'opm validate'
+description: 'Validate a operator catalog'
+branding:
+  icon: 'check-circle'  
+  color: 'red'
+inputs:
+  version:
+    description: 'Version of opm to use to validate the catalog'
+    required: false
+    default: "latest"
+  catalog:
+    description: 'Catalog to validate. It can be a directory or a container image'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      run: ${{ github.action_path }}/run.sh "${{ inputs.version }}" "${{ inputs.catalog }}"
